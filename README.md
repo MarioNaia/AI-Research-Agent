@@ -17,7 +17,6 @@ It’s a fully autonomous knowledge miner — a practical demonstration of AWS�
 
 ---
 
-## Architecture
 
 
 How It Works
