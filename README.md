@@ -80,29 +80,6 @@ Example Response:
   "preview": "AI in healthcare is transforming the medical field..."
 }
 
-Output Example
-
-The S3 file contains structured Markdown like:
-
-# AI in Healthcare
-
-## Summary
-Artificial Intelligence (AI) is revolutionizing healthcare by...
-
-## Key Findings
-- Improved diagnostics through medical imaging
-- AI-driven personalized medicine
-
-## Opportunities & Risks
-- + Better patient outcomes
-- – Data privacy and bias issues
-
-## Implementation Notes
-Use AWS Bedrock agents for scalable medical knowledge pipelines.
-
-## Sources
-- [WHO: AI in Health Report](https://www.who.int/)
-- [NIH: AI in Medical Research](https://www.nih.gov/)
 
 
 
