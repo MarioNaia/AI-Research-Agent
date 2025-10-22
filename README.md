@@ -17,16 +17,8 @@ It’s a fully autonomous knowledge miner — a practical demonstration of AWS�
 
 ---
 
-## Architecture (Mermaid Diagram)
+## Architecture
 
-```mermaid
-flowchart TD
-    A[User / Client] -->|POST /topic| B[API Gateway]
-    B --> C[Lambda Function (Python)]
-    C -->|Invoke| D[Amazon Bedrock (Claude 3.5 Sonnet)]
-    C -->|Optionally| E[Serper API (Web Snippets)]
-    C -->|Save Markdown| F[S3 Bucket (reports/*.md)]
-    F -->|Presigned URL| A
 
 How It Works
 1. API Gateway
@@ -53,3 +45,65 @@ Returns a presigned URL valid for 1 hour for quick viewing.
 
 5.Serper (Search)
 Adds fresh, real-world snippets from Google to enrich Claude’s knowledge base.
+
+
+Setup Summary
+
+Environment Variables
+
+Key	Description
+BEDROCK_REGION	AWS region (usually us-east-1)
+S3_BUCKET	Your S3 bucket name
+SERPER_API_KEY	Optional Serper.dev API key
+
+AWS Services Used
+
+Lambda (Python 3.12)
+
+API Gateway
+
+Amazon Bedrock (Claude 3.5 Sonnet)
+
+Amazon S3
+
+CloudWatch (for logs)
+
+Example Request
+curl -X POST "https://zhccijflxd.execute-api.us-east-1.amazonaws.com/default/research-agent" \
+  -H "Content-Type: application/json" \
+  -d "{\"topic\": \"AI in healthcare\"}"
+
+Example Response:
+{
+  "topic": "AI in healthcare",
+  "s3_key": "reports/ai-in-healthcare-20251022-235900.md",
+  "presigned_url_1h": "https://...amazonaws.com/reports/ai-in-healthcare-20251022-235900.md?...",
+  "preview": "AI in healthcare is transforming the medical field..."
+}
+
+Output Example
+
+The S3 file contains structured Markdown like:
+
+# AI in Healthcare
+
+## Summary
+Artificial Intelligence (AI) is revolutionizing healthcare by...
+
+## Key Findings
+- Improved diagnostics through medical imaging
+- AI-driven personalized medicine
+
+## Opportunities & Risks
+- + Better patient outcomes
+- – Data privacy and bias issues
+
+## Implementation Notes
+Use AWS Bedrock agents for scalable medical knowledge pipelines.
+
+## Sources
+- [WHO: AI in Health Report](https://www.who.int/)
+- [NIH: AI in Medical Research](https://www.nih.gov/)
+
+
+
